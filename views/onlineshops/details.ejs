@@ -1,21 +1,30 @@
-<%- include('../partials/header.ejs') %>
 
+<%- include('../partials/header.ejs') %>
 <%- include('../partials/nav.ejs') %>
 
-<div class="details content">
-    <img class="onlineshop-img-details" src="/<%= onlineshop.logo %>">
-    <!-- <img src="/uploads//undefined-1670819434387.jpeg" > -->
-    <h2><%= onlineshop.shop_name %></h2>
-    <div class="content">
-        <h2>Website URL: <%= onlineshop.website %></h2>
-    </div>
-    <% if (user.isAdmin) { %>
-        <a class="delete" data-doc="<%= onlineshop._id %>">
-            <img src="/trashcan.svg" alt="Delete icon">
-        </a>
-        <% } %>
-  </div>
+<main class="main">
+<%- include('../partials/sidebar.ejs') %>
 
+<section class="contents">
+    <div class="container">
+        <div style="display: flex; justify-content: space-between;">
+            <h1 class="display-5 mb-3"><%= onlineshop.shop_name %></h1>
+            <% if (user.isAdmin) { %>
+                <a class="delete" data-doc="<%= onlineshop._id %>">
+                    <i class='bx bxs-trash-alt bx-md bx-tada-hover'></i>
+                </a>
+                <% } %>
+          </div>
+
+<img class="place-logo-details" src="/<%= onlineshop.logo %>">
+<div class="info">
+  <h3 class="fs-6 fw-light website"> Website: <a href="<%= onlineshop.website %>"><%= onlineshop.website %></a> </h3>
+ </div> 
+
+
+</section>
+</main>
+<%- include('../partials/footer.ejs') %>
   <script>
     const trashcan = document.querySelector('a.delete');
 
@@ -31,4 +40,3 @@
     });
     
   </script>
-<%- include('../partials/footer.ejs') %>

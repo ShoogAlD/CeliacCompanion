@@ -1,23 +1,50 @@
 <%- include('../partials/header.ejs') %>
 
-
 <%- include('../partials/nav.ejs') %>
 
-<div class="onlineshops content">
-    <h2>All Online Shops</h2>
+<main class="main">
+
+<%- include('../partials/sidebar.ejs') %>
+
+    <section class="contents">
+            <div class="container">
+                <div class="row mt-4 mb-4">
+                <div class ="col-lg-10 p-3">
+                    <h1 class="display-2 mb-5">All online shops</h1>
+                    <section class="onlineshops">
 
     <% if (onlineshops.length > 0) { 
           onlineshops.forEach(onlineshop => { %>
-            <div class="onlineshop">
-             <a class="single" href="/onlineshops/<%= onlineshop._id %>">
-              <img class="onlineshop-img" src="/<%= onlineshop.logo %>">
-              <h3 class="shopname"><%= onlineshop.shop_name %></h3>
-             </a>
+            <div class="card">
+              <div class="card-side">
+                  <img class="place-logo" src="/<%= onlineshop.logo %>">
+              </div>
+              <div class="place-info">
+                <a class="single" href="/onlineshops/<%= onlineshop._id %>">
+              
+                  <h3 class="shopname"><%= onlineshop.shop_name %></h3>
+                 </a>
+              </div>
+
             </div>
       <% }) } else { %>
       <p>There are no online shops to display...</p>
       <% } %>
-    
+    </section>
+  </div>
 </div>
+</div>
+<div class="pagination">
+          <a href="#">&laquo;</a>
+          <a href="/onlineshops/?p=0">1</a>
+          <a class="active" href="/places/?p=1">2</a>
+          <a href="/onlineshops/?p=2">3</a>
+          <a href="/onlineshops/?p=3">4</a>
+          <a href="/onlineshops/?p=4">5</a>
+          <a href="/onlineshopss/?p=5">6</a>
+          <a href="#">&raquo;</a>
+</div>
+</section>
 
+</main>
 <%- include('../partials/footer.ejs') %>

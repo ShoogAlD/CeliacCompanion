@@ -3,7 +3,11 @@
 
 <%- include('../partials/nav.ejs') %>
 
-<div class="create-recipe content">
+<main class="main">
+<%- include('../partials/sidebar.ejs') %>
+
+<div class="contents">
+  <h2 class="mb-5">Add Recipe</h2>
     <form action="/recipes" method="POST" enctype="multipart/form-data">
       <label for="recipe_name">Recipe Name:</label>
       <input type="text" id="recipe_name" name="recipe_name" required>
@@ -13,8 +17,10 @@
       <textarea id="directions" name="directions" required></textarea>
       <label for="picture">Upload a recipe picture</label>
       <input type="file" id="picture" name="picture"><br>
-      <button>Submit</button>
+      <button type="submit" class="submit-btn">Submit</button>
     </form>
   </div>
+
+</main>
 
 <%- include('../partials/footer.ejs') %>

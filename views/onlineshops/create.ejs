@@ -3,7 +3,11 @@
 
 <%- include('../partials/nav.ejs') %>
 
-<div class="create-onlineshop content">
+<main class="main">
+<%- include('../partials/sidebar.ejs') %>
+
+<div class="contents">
+  <h2 class="mb-5">Add Online shop</h2>
     <form action="/onlineshops" method="POST" enctype="multipart/form-data">
       <label for="shop_name">Shop Name:</label>
       <input type="text" id="shop_name" name="shop_name" required>
@@ -11,8 +15,10 @@
       <input type="text" id="website" name="website" required>
       <label for="logo">Upload shop logo</label>
       <input type="file" id="logo" name="logo"><br>
-      <button>Submit</button>
+      <button type="submit" class="submit-btn">Submit</button>
     </form>
   </div>
+
+</main>
 
 <%- include('../partials/footer.ejs') %>

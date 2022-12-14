@@ -3,22 +3,49 @@
 
 <%- include('../partials/nav.ejs') %>
 
-<div class="recipes content">
-    <h2>All Recipes</h2>
+<main class="main">
+
+<%- include('../partials/sidebar.ejs') %>
+
+  <section class="contents">
+    <div class="container">
+        <div class="row mt-4 mb-4">
+        <div class ="col-lg-10 p-3">
+            <h1 class="display-2 mb-5">All Recipes</h1>
+            <section class="recipes">
 
     <% if (recipes.length > 0) { %>
 
       <% recipes.forEach(recipe => { %>
-        <div class="recipe">
+          <!-- <div class="row">
+            <div class="col-md m-3"> -->
+              <article class="recipe"> 
+                <img class="recipe-img" src="/<%= recipe.picture %>">  
         <a class="single" href="/recipes/<%= recipe._id %>">
-            <img class="recipe-img" src="/<%= recipe.picture %>">
-          <h3 class="recipename"><%= recipe.recipe_name %></h3>
-        </a></div>
+           <h3 class="fs-5"><%= recipe.recipe_name %></h3>
+        </a>
+        </article>
+      <!-- </div>
+    </div>  -->
+  
       <% }) %>
     <% } else { %>
-      <p>There are no recipes to display...</p>
+      <p>There are no blogs to display...</p>
     <% } %>
-    
+            </section>
   </div>
-
+</div>
+  </div>
+  <div class="pagination">
+    <a href="#">&laquo;</a>
+    <a href="#">1</a>
+    <a class="active" href="#">2</a>
+    <a href="#">3</a>
+    <a href="#">4</a>
+    <a href="#">5</a>
+    <a href="#">6</a>
+    <a href="#">&raquo;</a>
+  </div>
+  </section>
+</main>
 <%- include('../partials/footer.ejs') %>

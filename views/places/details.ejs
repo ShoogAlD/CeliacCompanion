@@ -1,39 +1,48 @@
 
     <%- include('../partials/header.ejs') %>
     <%- include('../partials/nav.ejs') %>
-    <div class="details content">
+
+    <main class="main">
+    <%- include('../partials/sidebar.ejs') %>
+
+    <section class="contents">
+        <div class="container">
+            <div style="display: flex; justify-content: space-between;">
+                <h1 class="display-5 mb-3"><%= place.name_en %></h1>
+                <% if (user.isAdmin) { %>
+                    <a class="delete" data-doc="<%= place._id %>">
+                        <i class='bx bxs-trash-alt bx-md bx-tada-hover'></i>
+                    </a>
+                    <% } %>
+              </div>
+    <h1 class="display-5 mb-5"><%= place.name_ar %></h1>
     <img class="place-logo-details" src="/<%= place.logo %>">
-    <h1><%= place.name_en %></h1>
-    <h1><%= place.name_ar %></h1>
-    <div class="content">
-    <h3 class="city"> City: <%= place.city %> </h3>
-    <h3 class="phone"> Phone: <%= place.phone %> </h3>
+    <div class="info">
+    <h3 class="fs-4 mb-5 mt-5 fw-medium city"> City: <%= place.city %> </h3>
+    <h3 class="fs-6 fw-light phone"> Phone: <%= place.phone %> </h3>
     <% if (place.email !== "") { %>
-        <h3 class="email"> Email: <%= place.email %> </h3>
+    <h3 class="fs-6 fw-light email"> Email: <%= place.email %> </h3>
     <% } %>
     <% if (place.website !== "") { %>
-        <h3 class="website"> Website: <a href="<%= place.website %>"><%= place.website %></a> </h3>
+      <h3 class="fs-6 fw-light website"> Website: <a href="<%= place.website %>"><%= place.website %></a> </h3>
     <% } %>
     <% if (place.snapchat !== "") { %>
-        <h3 class="snapchat"> Snapchat: <a href="<%= place.snapchat %>"><%= place.snapchat %></a> </h3>
+     <h3 class="fs-6 fw-light snapchat"> Snapchat: <a href="<%= place.snapchat %>"><%= place.snapchat %></a> </h3>
     <% } %>
     <% if (place.instgram !== "") { %>
-        <h3 class="instgram"> Instgram: <a href="<%= place.instgram %>"><%= place.instgram %></a> </h3>
+        <h3 class="fs-6 fw-light instgram"> Instgram: <a href="<%= place.instgram %>"><%= place.instgram %></a> </h3>
     <% } %>
     <% if (place.twitter !== "") { %>
-        <h3 class="twitter"> twitter: <a href="<%= place.twitter %>"><%= place.twitter %></a> </h3>
+        <h3 class="fs-6 fw-light twitter"> Twitter: <a href="<%= place.twitter %>"><%= place.twitter %></a> </h3>
     <% } %>
     <% if (place.location !== "") { %>
-        <h3 class="location"> Google map location: <a href="<%= place.location %>"><%= place.location %>"</a> </h3>
-    <% } %>
-    <br><br><br><br>
-    </div>
-    <% if (user.isAdmin) { %>
-    <a class="delete" data-doc="<%= place._id %>">
-        <img src="/trashcan.svg" alt="Delete icon">
-    </a>
+    <h3 class="fs-6 fw-light location"> Google map location: <a href="<%= place.location %>"><%= place.location %>"</a> </h3>
     <% } %>
     </div>
+   
+            </div>
+    </section>
+    </main>
     <%- include('../partials/footer.ejs') %>
     <script>
         const deleteicon = document.querySelector('a.delete');
@@ -47,4 +56,5 @@
             .catch(err => cosole.log(err));
         })
     </script>
+    
 

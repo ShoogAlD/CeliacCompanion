@@ -1,38 +1,55 @@
-<nav class="top-nav">
-    <ul>
-        <% if (user) { %>
-            <li>Welcome, <%= user.email %></li>
-            <li><a href="/logout">Log out</a></li>
-          <% } else { %>
-            <li><a href="/login">Log in</a></li>
-            <li><a href="/signup" class="btn">Sign up</a></li>
-          <% } %>
-    </ul>
 
-</nav>
-
-
-<nav class="main-nav">
-    <ul>
-        <li><a href="/index">Home</a></li>
-        <li><a href="/places">GF places</a></li>
-        <li><a href="/recipes">GF Recipes</a></li>
-        <li><a href="/onlineshops">Online stores</a></li>
-        <li><a href="/about">About Us</a></li>
-    </ul>
-
-</nav>        
- <% if (user) { 
-     if (user.isAdmin) { %>
-         <nav class="admin-nav">
-          <ul>
-            <li><a href="/cities">Cities</a></li>
-            <li><a href="/cities/create">Add city</a></li>
-            <li><a href="/places/create">Add place</a></li>
-            <li><a href="/recipes/create">Add recipe</a></li>
-            <li><a href="/onlineshops/create">Add online store</a></li>
-         </ul>
-
-         </nav>  
-<% } }%>
+<nav class="navbar navbar-expand-md py-0 top-nav">
+    <ul class="navbar-nav ms-auto">
+          <% if (user) { %>
+              <li><p class="nav-link mx-3 text-white fs-6 fw-lighter">Welcome, <%= user.email %> </p> </li>
+              <li class="nav-item">
+                <a href="/logout"class="nav-link mx-3 text-white fs-6">Log out</a></li>
+            <% } else { %>
+              <li class="nav-item">
+                <a href="/login" class="nav-link mx-3 text-white fs-6">Log in</a></li>
+              <li><a href="/signup" class="nav-link mx-3 text-white fs-6">Sign up</a></li>
+            <% } %>
+               </ul>
+        </nav>
   
+  <nav class="navbar navbar-expand-md container-fluid mid-nav">
+    <div class="navbar-brand fs-5 ms-3">
+          <a href="/" title="CeliacCompanion">
+            <img src="/img/logo.png" alt="CeliacCompanion logo" class="site-logo">
+          </a>
+          </div>
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#toggleableMenu">
+    <span class="navbar-toggler-icon"></span></button>
+  <div class= "collapse navbar-collapse ul-bg" id="toggleableMenu">
+    <ul class="navbar-nav ms-auto">
+      <li class="nav-item">
+        <a href="/index" class="nav-link mx-3 text-white fs-6 fw-lighter">Home Page</a>
+      </li>
+      <li class="nav-item">
+        <a href="/places" class="nav-link mx-3 text-white fs-6 fw-light">Search Places</a>
+      </li>
+      <li class="nav-item">
+        <a href="/recipes" class="nav-link mx-3 text-white fs-6 fw-light">Search Recipes</a>
+      </li>
+      <li class="nav-item">
+        <a href="/onlineshops" class="nav-link mx-3 text-white fs-6 fw-light">Search Online shops</a>
+      </li>
+      <li class="nav-item">
+        <a href="/about" class="nav-link mx-3 text-white fs-6 fw-lighter">About Us</a>
+      </li>
+           <% if (user) { 
+             if (user.isAdmin) { %>
+              <li class="nav-item"><a href="/places/create" class="nav-link mx-3 text-danger fs-6 fw-lighter">Add place</a>
+              </li>
+              <li class="nav-item"><a href="/recipes/create" class="nav-link mx-3 text-danger fs-6 fw-lighter">Add recipe</a>
+              </li>
+              <li class="nav-item"><a href="/onlineshops/create" class="nav-link mx-3 text-danger fs-6 fw-lighter">Add Online Store</a>
+              </li>
+              <li class="nav-item"><a href="/cities/create" class="nav-link mx-3 text-danger fs-6 fw-lighter">Add City</a>
+              </li>
+             <% } %>
+            <% } %>
+           </ul>
+        </div>
+    </nav>

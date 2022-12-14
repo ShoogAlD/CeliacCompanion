@@ -1,20 +1,28 @@
 
     <%- include('./partials/header.ejs') %>
     <%- include('./partials/nav.ejs') %>
- 
 
+    <main class="main">
+    <%- include('./partials/sidebar.ejs') %>
+
+    <div class="contents">
+      <h2 class="mb-5">Sign Up</h2>
     <form action="/signup">
-        <h2>Sign up</h2>
         <label for="email">Email</label>
         <input type="text" name="email" required />
         <div class="email error"></div>
         <label for="password">Password</label>
         <input type="password" name="password" required />
         <div class="password error"></div>
-        <button>Sign up</button>
+        <br>
+        <button class="submit-btn">Sign up</button>
+
+        <h6 class="mt-4">Already have an account? <a href="./login">Click here</a></h6>
       </form>
       
-      
+    </main>
+    <%- include('./partials/footer.ejs') %>
+
       <script>
         const form = document.querySelector('form');
         const emailError = document.querySelector('.email.error');
@@ -55,4 +63,3 @@
         });
       </script>
 
-<%- include('./partials/footer.ejs') %>

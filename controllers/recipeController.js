@@ -57,3 +57,13 @@ module.exports.recipe_delete = (req, res) => {
     });
 }
 
+// module.exports.recipe_update = (req, res) => {
+//     const id = req.params.id;
+//     Recipe.updateOne({id} ,{$set: {    }} )
+//       .then(result => {
+//         res.json({ redirect: '/recipes' });
+//       })
+//       .catch(err => {
+//         console.log(err);
+//       });
+//   }

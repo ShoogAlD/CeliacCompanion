@@ -2,47 +2,51 @@
     <%- include('../partials/header.ejs') %>
 
     <%- include('../partials/nav.ejs') %>
-    <nav class="places-nav">
-        <ul>
-            <% if(cities.length > 0) { %>
-                <% cities.forEach(city => { %>
-                    <li><a href="/places/bycity/<%= city.city_name %>"><%= city.city_name %></a></li>
-              <% } )} %>  
-        </ul>
-    
-    </nav>
 
-    <div class="places 1content">
-    
-    
-<% if (places.length > 0){ %>
-    <div class="pagination">
-        <a href="#">&laquo;</a>
-        <a href="/places/?p=0">1</a>
-        <a class="active" href="/places/?p=1">2</a>
-        <a href="/places/?p=2">3</a>
-        <a href="/places/?p=3">4</a>
-        <a href="/places/?p=4">5</a>
-        <a href="/places/?p=5">6</a>
-        <a href="#">&raquo;</a>
-    </div>
-    <main>
+ <main class="main">
 
-    
-        <% places.forEach(place => { %>
-                <a class="single" href="/places/<%= place._id %> ">
-                <img class="place-logo" src="/<%= place.logo %>">
-                <h3 class="name"> English Name: <%= place.name_en %> </h3>
-                <h3 class="name"> Arabic Name: <%= place.name_ar %> </h3>
-                <h3 class="city"> City: <%= place.city %> </h3>
-                <!-- <h3 class="phone"> Phone: <%= place.phone %> </h3>
-                <h3 class="email"> Email: <%= place.email %> </h3>
-                <h3 class="website"> Website: <%= place.website %> </h3>
-                <h3 class="location"> Google map location: <%= place.location %> </h3><br><br> -->
-                <br><br></a>
-        <% }) %> </div> 
-<% } else { %>
-     <p>No places added yet</p>
-<% } %>
-</main>   
+    <%- include('../partials/sidebar.ejs') %>
+
+        <section class="contents">
+                <div class="container">
+                    <div class="row mt-4 mb-4">
+                    <div class ="col-lg-10 p-3">
+                        <h1 class="display-2 mb-5">All Places</h1>
+                        <section class="places">
+
+                        <% if(places.length > 0) { %>
+                            <% places.forEach(place => { %>
+                                
+                                <div class="card">
+                                    <div class="card-side">
+                                        <img src="/<%= place.logo %>" class="place-logo">
+                                    </div>
+                                    <div class="place-info">
+                                        <a href="/places/<%= place._id %>"><h3 class="place-name-eng fs-3 fw-medium mt-2"> <%= place.name_en %></h3></a>
+                                        <h3 class="place-name-ar fs-4 fw-medium mb-5"><%= place.name_ar %> </h3>
+                                        <h3 class="place-city fs-5 fw-light"><%= place.city %> </h3>
+                        </div>
+                    </div>
+                            <% }) %>
+                            <% } else { %>
+                                <p>No places added yet</p>
+                            <% } %>
+                        </section>
+                    </div>
+                 </div>
+                </div>
+                <div class="pagination">
+                            <a href="#">&laquo;</a>
+                            <a href="/places/?p=0">1</a>
+                            <a class="active" href="/places/?p=1">2</a>
+                            <a href="/places/?p=2">3</a>
+                            <a href="/places/?p=3">4</a>
+                            <a href="/places/?p=4">5</a>
+                            <a href="/places/?p=5">6</a>
+                            <a href="#">&raquo;</a>
+                  </div>
+</section>
+
+</main>
 <%- include('../partials/footer.ejs') %>
+
