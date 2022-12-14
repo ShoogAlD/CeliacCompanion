@@ -1,0 +1,23 @@
+<%- include('../partials/header.ejs') %>
+
+
+<%- include('../partials/nav.ejs') %>
+
+<div class="content">
+    
+
+  <% if(cities.length > 0) { %>
+    <% cities.forEach(city => { %>
+    <div class="city">
+       <a class="single" href="/cities/<%= city._id %>">
+         <h3><%= city.city_name %></h3>
+       </a>
+    </div>
+  <% }) %>
+<% } else { %>
+      <p>There are no cities to display...</p>
+  <% } %> 
+    
+</div>
+
+<%- include('../partials/footer.ejs') %>

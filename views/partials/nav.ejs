@@ -1,0 +1,38 @@
+<nav class="top-nav">
+    <ul>
+        <% if (user) { %>
+            <li>Welcome, <%= user.email %></li>
+            <li><a href="/logout">Log out</a></li>
+          <% } else { %>
+            <li><a href="/login">Log in</a></li>
+            <li><a href="/signup" class="btn">Sign up</a></li>
+          <% } %>
+    </ul>
+
+</nav>
+
+
+<nav class="main-nav">
+    <ul>
+        <li><a href="/index">Home</a></li>
+        <li><a href="/places">GF places</a></li>
+        <li><a href="/recipes">GF Recipes</a></li>
+        <li><a href="/onlineshops">Online stores</a></li>
+        <li><a href="/about">About Us</a></li>
+    </ul>
+
+</nav>        
+ <% if (user) { 
+     if (user.isAdmin) { %>
+         <nav class="admin-nav">
+          <ul>
+            <li><a href="/cities">Cities</a></li>
+            <li><a href="/cities/create">Add city</a></li>
+            <li><a href="/places/create">Add place</a></li>
+            <li><a href="/recipes/create">Add recipe</a></li>
+            <li><a href="/onlineshops/create">Add online store</a></li>
+         </ul>
+
+         </nav>  
+<% } }%>
+  

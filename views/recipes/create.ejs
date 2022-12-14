@@ -1,0 +1,20 @@
+<%- include('../partials/header.ejs') %>
+
+
+<%- include('../partials/nav.ejs') %>
+
+<div class="create-recipe content">
+    <form action="/recipes" method="POST" enctype="multipart/form-data">
+      <label for="recipe_name">Recipe Name:</label>
+      <input type="text" id="recipe_name" name="recipe_name" required>
+      <label for="ingredients">Ingredients:</label>
+      <textarea id="ingredients" name="ingredients" required></textarea>
+      <label for="directions">Directions:</label>
+      <textarea id="directions" name="directions" required></textarea>
+      <label for="picture">Upload a recipe picture</label>
+      <input type="file" id="picture" name="picture"><br>
+      <button>Submit</button>
+    </form>
+  </div>
+
+<%- include('../partials/footer.ejs') %>

@@ -1,0 +1,48 @@
+
+    <%- include('../partials/header.ejs') %>
+
+    <%- include('../partials/nav.ejs') %>
+    <nav class="places-nav">
+        <ul>
+            <% if(cities.length > 0) { %>
+                <% cities.forEach(city => { %>
+                    <li><a href="/places/bycity/<%= city.city_name %>"><%= city.city_name %></a></li>
+              <% } )} %>  
+        </ul>
+    
+    </nav>
+
+    <div class="places 1content">
+    
+    
+<% if (places.length > 0){ %>
+    <div class="pagination">
+        <a href="#">&laquo;</a>
+        <a href="/places/?p=0">1</a>
+        <a class="active" href="/places/?p=1">2</a>
+        <a href="/places/?p=2">3</a>
+        <a href="/places/?p=3">4</a>
+        <a href="/places/?p=4">5</a>
+        <a href="/places/?p=5">6</a>
+        <a href="#">&raquo;</a>
+    </div>
+    <main>
+
+    
+        <% places.forEach(place => { %>
+                <a class="single" href="/places/<%= place._id %> ">
+                <img class="place-logo" src="/<%= place.logo %>">
+                <h3 class="name"> English Name: <%= place.name_en %> </h3>
+                <h3 class="name"> Arabic Name: <%= place.name_ar %> </h3>
+                <h3 class="city"> City: <%= place.city %> </h3>
+                <!-- <h3 class="phone"> Phone: <%= place.phone %> </h3>
+                <h3 class="email"> Email: <%= place.email %> </h3>
+                <h3 class="website"> Website: <%= place.website %> </h3>
+                <h3 class="location"> Google map location: <%= place.location %> </h3><br><br> -->
+                <br><br></a>
+        <% }) %> </div> 
+<% } else { %>
+     <p>No places added yet</p>
+<% } %>
+</main>   
+<%- include('../partials/footer.ejs') %>

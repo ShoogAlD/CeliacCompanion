@@ -1,0 +1,37 @@
+<%- include('../partials/header.ejs') %>
+
+<%- include('../partials/nav.ejs') %>
+
+<div class="details content">
+    <img class="recipe-img-details" src="/<%= recipe.picture %>">
+    <!-- <img src="/uploads//undefined-1670819434387.jpeg" > -->
+    <h2><%= recipe.recipe_name %></h2>
+    <div class="content">
+        <h2>Ingredients</h2>
+      <p><%= recipe.ingredients %></p><br><br>
+      <h2>Directions</h2>
+      <p><%= recipe.directions %></p>
+    </div>
+    <% if (user.isAdmin) { %>
+        <a class="delete" data-doc="<%= recipe._id %>">
+            <img src="/trashcan.svg" alt="Delete icon">
+        </a>
+        <% } %>
+  </div>
+
+  <script>
+    const trashcan = document.querySelector('a.delete');
+
+    trashcan.addEventListener('click', (e) => {
+      const endpoint = `/recipes/${trashcan.dataset.doc}`;
+
+      fetch(endpoint, {
+        method: 'DELETE',
+      })
+      .then(response => response.json())
+      .then(data => window.location.href = data.redirect)
+      .catch(err => console.log(err));
+    });
+    
+  </script>
+<%- include('../partials/footer.ejs') %>

@@ -1,0 +1,34 @@
+<%- include('../partials/header.ejs') %>
+
+<%- include('../partials/nav.ejs') %>
+
+<div class="details content">
+    <img class="onlineshop-img-details" src="/<%= onlineshop.logo %>">
+    <!-- <img src="/uploads//undefined-1670819434387.jpeg" > -->
+    <h2><%= onlineshop.shop_name %></h2>
+    <div class="content">
+        <h2>Website URL: <%= onlineshop.website %></h2>
+    </div>
+    <% if (user.isAdmin) { %>
+        <a class="delete" data-doc="<%= onlineshop._id %>">
+            <img src="/trashcan.svg" alt="Delete icon">
+        </a>
+        <% } %>
+  </div>
+
+  <script>
+    const trashcan = document.querySelector('a.delete');
+
+    trashcan.addEventListener('click', (e) => {
+      const endpoint = `/recipes/${trashcan.dataset.doc}`;
+
+      fetch(endpoint, {
+        method: 'DELETE',
+      })
+      .then(response => response.json())
+      .then(data => window.location.href = data.redirect)
+      .catch(err => console.log(err));
+    });
+    
+  </script>
+<%- include('../partials/footer.ejs') %>

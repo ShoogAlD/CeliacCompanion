@@ -1,0 +1,37 @@
+
+    <%- include('../partials/header.ejs') %>
+    <%- include('../partials/nav.ejs') %>
+    <div class="create-place content">
+        <form action="/places" method="POST" enctype="multipart/form-data">
+            <label for="name_en">English name:</label>
+            <input type="text" id="name_en" name="name_en" required><br>
+            <label for="name_ar">Arabic name:</label>
+            <input type="text" id="name_ar" name="name_ar" required><br>
+            <label for="city">Select a City:</label>
+            <select name="city" id="city">
+                <% if(cities.length > 0) { %>
+                    <% cities.forEach(city => { %>
+                        <option value="<%= city.city_name %>"><%= city.city_name %></option>
+                  <% } )} %>      
+            </Select><br>
+            <label for="phone">Phone:</label>
+            <input type="text" id="phone" name="phone" required><br>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email"><br>
+            <label for="website">Website:</label>
+            <input type="text" id="website" name="website"><br>
+            <label for="snapchat">Snapchat:</label>
+            <input type="text" id="snapchat" name="snapchat"><br>
+            <label for="twitter">Twitter:</label>
+            <input type="text" id="twitter" name="twitter"><br>
+            <label for="instgram">Instgram:</label>
+            <input type="text" id="instgram" name="instgram"><br>
+            <label for="location">Google map location:</label>
+            <input type="text" id="location" name="location"><br>
+            <label for="logo">Upload store logo</label>
+            <input type="file" id="logo" name="logo"><br>
+            <button>Submit</button>
+        </form>
+    </div>
+    
+    <%- include('../partials/footer.ejs') %>
