@@ -19,13 +19,14 @@ const authRoutes = require('./routes/authRoutes');
 //express app
 const app = express();
 //const dbURI = 'https://data.mongodb-api.com/app/data-avpiw/endpoint/data/v1';
-
+mongoose.set('strictQuery', true);
 //connnect to manngodb
 const dbURI = 'mongodb+srv://shoogdb:shoog123456@cluster0.cqarta9.mongodb.net/?retryWrites=true&w=majority';
-mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true})
     .then((result) => app.listen(3000))
     .catch((err) => console.log(err));
 
+ 
 //view engine
 app.set('view engine', 'ejs');
 
