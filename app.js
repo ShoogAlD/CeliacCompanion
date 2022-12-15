@@ -67,7 +67,6 @@ app.get('/about' , (req,res) => {
     res.render('about', {title : 'About'});
 }); 
 
-
 //other routes
 app.use(placeRoutes);
 app.use(authRoutes);

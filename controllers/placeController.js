@@ -3,24 +3,16 @@ const City = require('../models/city');
 
 
 // place_index
-module.exports.place_index = paginatedResults(Place),(req, res) => {
-    const page = req.query.p || 0;
-    const placesPerPage = 5;
-    let places = [];
-
-     City.find()
-    .then((val) => 
-    Place.find()
-    .skip(page * placesPerPage)
-    .limit(placesPerPage)
-    .then((result) => {
-        result.forEach(place => places.push(place))
-        res.render('places/index',{title : 'All places', places:places, cities : val, page : page})
-        res.json(res.paginatedResults)
-    }))
-    .catch((err) => {
-        console.log(err);
-    })
+module.exports.place_index = (req, res) => {
+    City.find()
+   .then((val) => 
+   Place.find() 
+   .then((result) => {
+       res.render('places/index',{title : 'All places', places:result, cities : val})
+   }))
+   .catch((err) => {
+       console.log(err);
+   })
 
 }
 
@@ -97,37 +89,3 @@ module.exports.place_delete = (req, res) => {
             console.log(err);
         });
 }
-
-function paginatedResults(model) {
-    return async (req, res, next) => {
-      const page = parseInt(req.query.page)
-      const limit = parseInt(req.query.limit)
-  
-      const startIndex = (page - 1) * limit
-      const endIndex = page * limit
-  
-      const results = {}
-  
-      if (endIndex < await model.countDocuments().exec()) {
-        results.next = {
-          page: page + 1,
-          limit: limit
-        }
-      }
-      
-      if (startIndex > 0) {
-        results.previous = {
-          page: page - 1,
-          limit: limit
-        }
-      }
-      try {
-        results.results = await model.find().limit(limit).skip(startIndex).exec()
-        res.paginatedResults = results
-        next()
-      } catch (e) {
-        res.status(500).json({ message: e.message })
-      }
-    }
-  }
-  

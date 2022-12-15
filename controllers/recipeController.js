@@ -8,21 +8,15 @@ const { ObjectId } = require('mongodb')
 //     res.render('signup', {title: 'Signup'});
 // }
 module.exports.recipe_index = (req, res) => {
-    const page = req.query.p || 0;
-    const recipesPerPage = 5;
-    let recipes = [];
+    Recipe.find().sort({ createdAt: -1 })
+      .then(result => {
+        res.render('recipes/index', { recipes: result, title: 'All recipes' });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
   
-    Recipe.find()
-    .skip(page * recipesPerPage)
-    .limit(recipesPerPage)
-    .then((result => {
-        result.forEach(recipe => recipes.push(recipe))
-        res.render('recipes/index', { recipes: result, title: 'All recipes', recipes : recipes });
-    }))
-    .catch((err) => {
-      console.log(err);
-    });
-}
 
 module.exports.recipe_details = (req, res) => {
   const id = req.params.id;
