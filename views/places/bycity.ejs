@@ -1,10 +1,78 @@
 
-    <%- include('../partials/header.ejs') %>
+  
 
     <%- include('../partials/nav.ejs') %>
-    <div class="places content">
-    
-        <% if ((places.length > 0) && (city !== "")) { %>
+
+    <%- include('../partials/header.ejs') %>
+
+
+
+ <main class="main">
+
+    <%- include('../partials/sidebar.ejs') %>
+
+        <section class="contents">
+                <div class="container">
+                    <div class="row mt-4 mb-4">
+                    <div class ="col-lg-10 p-3">
+                        <h1 class="display-2 mb-5">Places in <%= city.city_name%> </h1>
+                        <section class="places">
+
+    <!-- <div class="contents">-->
+        <div class="dropdown"> 
+    <!-- <form action="/places/bycity/<%-city%>" method="POST"> -->
+        <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown"><label for="city">Select a City:</label>
+        </button> 
+        <!-- <select name="city" id="city"> -->
+            <ul class="dropdown-menu">
+                 <% if(cities.length > 0) { %>
+                    <% cities.forEach(city => { %>
+                        <li><a class="dropdown-item" href="/places/bycity/<%=city.city_name%>"><%=city.city_name%></a></li>
+                        <!-- <option value="<%= city.city_name %>"><%= city.city_name %></option> -->
+                  <% } )} %>  </ul> 
+            <!-- </select><br> -->
+            <!-- <button type="submit" class="submit-btn">Search</button> -->
+    <!-- </form> -->
+    </div>
+    <% if(places.length > 0) { %>
+        <% places.forEach(place => { %>
+            
+            <div class="card">
+                <div class="card-side">
+                    <img src="/<%= place.logo %>" class="place-logo">
+                </div>
+                <div class="place-info">
+                    <a href="/places/<%= place._id %>"><h3 class="place-name-eng fs-3 fw-medium mt-2"> <%= place.name_en %></h3></a>
+                    <h3 class="place-name-ar fs-4 fw-medium mb-5"><%= place.name_ar %> </h3>
+                    <h3 class="place-city fs-5 fw-light"><%= place.city %> </h3>
+    </div>
+</div>
+        <% }) %>
+        <% } else { %>
+            <p>No places added yet</p>
+        <% } %>
+ </section>
+                    </div>
+                 </div>
+               </div>
+                <div class="pagination">
+                            <a href="/places/?p=1>&laquo;</a>
+                            <a class="active" href="/places/?p=1">1</a>  
+                                <a  href="/places/?p2">2</a>
+                                <a  href="/places/?p3">3</a>
+                                <a  href="/places/?p4">4</a>
+                                <a  href="/places/?p5">5</a>
+                                <a  href="/places/?p5">6</a>
+                                <a  href="/places/?p5">7</a>
+                                <a  href="/places/?p6">8</a>
+                            <a href="/places/?p9">&raquo;</a> 
+                   </div>
+</section>
+
+</main>
+
+
+        <!-- <% if ((places.length > 0) && (city !== "")) { %>
             <% places.forEach(place => { %>
                     <% if (place.city === city) { %>
                         <a class="single" href="/places/<%= place._id %> ">
@@ -18,5 +86,5 @@
             <% }) %> 
         <% } else { %>
             <p>No places added yet</p>
-        <% } %>
+        <% } %> -->
     <%- include('../partials/footer.ejs') %>

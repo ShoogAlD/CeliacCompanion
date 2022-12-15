@@ -1,8 +1,9 @@
 const Place = require('../models/place');
 const City = require('../models/city');
 
+
 // place_index
-module.exports.place_index = (req, res) => {
+module.exports.place_index = paginatedResults(Place),(req, res) => {
     const page = req.query.p || 0;
     const placesPerPage = 5;
     let places = [];
@@ -14,7 +15,8 @@ module.exports.place_index = (req, res) => {
     .limit(placesPerPage)
     .then((result) => {
         result.forEach(place => places.push(place))
-        res.render('places/index',{title : 'All places', places:places, cities : val})
+        res.render('places/index',{title : 'All places', places:places, cities : val, page : page})
+        res.json(res.paginatedResults)
     }))
     .catch((err) => {
         console.log(err);
@@ -25,10 +27,12 @@ module.exports.place_index = (req, res) => {
 // place_index for one city
 module.exports.place_by_city_get = (req, res) => {
     const city = req.params.city;
-   Place.find() 
+    City.find()
+    .then((val) =>
+    Place.find({city: city}) 
    .then((result) => {
-       res.render('places/bycity',{title : 'places by city', places:result, city: city})
-   })
+       res.render('places/bycity' ,{title : 'places by city', places:result, cities : val , city: city})
+   }))
    .catch((err) => {
        console.log(err);
    })
@@ -94,10 +98,36 @@ module.exports.place_delete = (req, res) => {
         });
 }
 
-// module.exports = {
-//     place_index,
-//     place_details,
-//     place_create_get,
-//     place_create_post,
-//     place_delete
-// }
+function paginatedResults(model) {
+    return async (req, res, next) => {
+      const page = parseInt(req.query.page)
+      const limit = parseInt(req.query.limit)
+  
+      const startIndex = (page - 1) * limit
+      const endIndex = page * limit
+  
+      const results = {}
+  
+      if (endIndex < await model.countDocuments().exec()) {
+        results.next = {
+          page: page + 1,
+          limit: limit
+        }
+      }
+      
+      if (startIndex > 0) {
+        results.previous = {
+          page: page - 1,
+          limit: limit
+        }
+      }
+      try {
+        results.results = await model.find().limit(limit).skip(startIndex).exec()
+        res.paginatedResults = results
+        next()
+      } catch (e) {
+        res.status(500).json({ message: e.message })
+      }
+    }
+  }
+  

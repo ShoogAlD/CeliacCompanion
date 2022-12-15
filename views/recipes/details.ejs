@@ -5,7 +5,7 @@
 <main class="main">
 <%- include('../partials/sidebar.ejs') %>
 
-<div class="contents">
+<section class="contents">
   <div class="container">
     <div style="display: flex; justify-content: space-between;">
       <h1 class="display-5 mb-3"><%= recipe.recipe_name %></h1>
@@ -15,6 +15,18 @@
         </a>
         <% } %>
     </div>
+  <!-- <div class="container">
+      <div style="display: flex; justify-content: space-between;">
+          <h1 class="display-5 mb-3"><%= recipe.recipe_name %></h1>
+          <% if (user.isAdmin) { %>
+              <a href="/recipes/update/<%= recipe._id %>"><button class="submit-btn">Update</button></a>
+                
+              <a class="delete" data-doc="<%= recipe._id %>">
+                <button class="submit-btn">Delete</button>
+              </a>
+              <% } %>
+        </div> -->
+
     <img class="recipe-img-details" src="/<%= recipe.picture %>">
         <h2 class="fs-4 mb-5 mt-5 fw-medium">Ingredients</h2>
       <p><%= recipe.ingredients %></p>
@@ -22,7 +34,8 @@
       <p><%= recipe.directions %></p>
     </div>
     
-      </div>
+  </section>
+
 </main>
 <%- include('../partials/footer.ejs') %>
   <script>
